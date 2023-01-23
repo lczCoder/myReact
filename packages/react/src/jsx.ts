@@ -59,4 +59,4 @@ export const jsx = (type: ElementType, config: any, ...maybeChildren: any) => {
 };
 
 //  dev环境 jsx的实现，比生产环境多了一些校验和判断
-export const jsxDev = jsx;
+export const jsxDEV = jsx;
