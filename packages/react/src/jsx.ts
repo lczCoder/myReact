@@ -54,9 +54,28 @@ export const jsx = (type: ElementType, config: any, ...maybeChildren: any) => {
 		default:
 			props.children = maybeChildren;
 	}
-
 	return ReactElement(type, key, ref, props);
 };
 
 //  dev环境 jsx的实现，比生产环境多了一些校验和判断
-export const jsxDEV = jsx;
+export const jsxDEV = (type: ElementType, config: any) => {
+	let key: Key = null;
+	const props: Props = {};
+	let ref: Ref = null;
+
+	for (const prop in config) {
+		const value = config[prop];
+		if (prop === 'key' && value !== undefined) {
+			key = value + '';
+			continue;
+		}
+		if (prop === 'ref' && value !== undefined) {
+			ref = value;
+			continue;
+		}
+		if ({}.hasOwnProperty.call(config, prop)) {
+			props[prop] = value;
+		}
+	}
+	return ReactElement(type, key, ref, props);
+};
