@@ -4,9 +4,10 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"build:dev": "rollup --bundleConfigAsCjs --config scripts/rollup/react.config.js",
+		"build:dev": "pnpm rimraf && rollup --bundleConfigAsCjs --config scripts/rollup/react.config.js",
 		"lint": "eslint --ext .js,.ts,.jsx,.tsx --fix --quiet ./packages",
-		"git": "git add . && git cz"
+		"git": "git add . && git cz",
+		"rimraf": "rimraf dist"
 	},
 	"keywords": [],
 	"author": "",

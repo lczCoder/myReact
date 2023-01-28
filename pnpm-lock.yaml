@@ -42,9 +42,14 @@ importers:
       rollup-plugin-typescript2: registry.npmmirror.com/rollup-plugin-typescript2/0.34.1_eymahajmafh3u7vrzmo7ylp2pa
       typescript: registry.npmmirror.com/typescript/4.9.4
 
-  dist/node_modules/react:
+  packages/react:
     specifiers:
-      react: ^1.0.0
+      shared: workspace:*
+    dependencies:
+      shared: link:../shared
+
+  packages/shared:
+    specifiers: {}
 
 packages:
 
