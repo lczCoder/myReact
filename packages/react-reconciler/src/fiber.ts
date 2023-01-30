@@ -39,6 +39,7 @@ export class FiberNode {
 		this.memoizedProps = null; // 最终props
 
 		this.alternate = null; // fiber双缓存树，指向对方
+		// current.alternate = workInProgress  workInProgress.alternate = current
 
 		/************** 副作用 ******************/
 		this.flags = NoFlags; // fiber执行dom操作的标记符

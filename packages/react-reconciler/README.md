@@ -10,3 +10,5 @@
 FiberNode (虚拟 dom 在 react 中的实现， vue 中是 VNode)
 
 jsx | React Element | FiberNode | Dom Element
+
+current FiberNode <===> workInProgress
