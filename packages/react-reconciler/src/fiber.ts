@@ -1,5 +1,6 @@
 import {Props, Key, Ref} from 'shared/ReactType';
 import {WorkTag} from './workTag';
+import {Flags, NoFlags} from './fiberFlags';
 
 export class FiberNode {
 	tag: WorkTag;
@@ -13,6 +14,8 @@ export class FiberNode {
 	child: FiberNode | null;
 	index: number;
 	memoizedProps: Props | null;
+	alternate: FiberNode | null;
+	flags: Flags;
 
 	constructor(tag: WorkTag, pendingProps: Props, key: Key) {
 		this.tag = tag; // 对应不同fiberNode的类型数值
@@ -34,5 +37,10 @@ export class FiberNode {
 		/************** 构成fiberNode工作单元的属性 ******************/
 		this.pendingProps = pendingProps; // 初始props
 		this.memoizedProps = null; // 最终props
+
+		this.alternate = null; // fiber双缓存树，指向对方
+
+		/************** 副作用 ******************/
+		this.flags = NoFlags; // fiber执行dom操作的标记符
 	}
 }
