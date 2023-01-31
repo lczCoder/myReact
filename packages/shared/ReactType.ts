@@ -12,3 +12,8 @@ export interface ReactElementType {
 	props: Props;
 	__mark: string;
 }
+/**
+ * this.setState({name:'lcz'})
+ * this.setState(()=>({name:'lxl'}))
+ */
+export type Action<State> = State | ((prevState: State) => State);
