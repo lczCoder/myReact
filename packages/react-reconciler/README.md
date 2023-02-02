@@ -12,3 +12,14 @@ FiberNode (虚拟 dom 在 react 中的实现， vue 中是 VNode)
 jsx | React Element | FiberNode | Dom Element
 
 current FiberNode <===> workInProgress
+
+<!--  -->
+
+组件如何触发更新？
+两种情况
+
+- 一种是组件在 mount 的时候
+- 一种是组件在 update 的时候
+
+更新可能发生在任意组件，而更新的流程是从根节点进行递归的
+需要一个根节点来保存通用的信息

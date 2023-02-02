@@ -1,10 +1,32 @@
-import {FiberNode} from './fiber';
+import {FiberNode, FiberRootNode, createWorkInProgress} from './fiber';
 import {beginwork} from './beginWork';
 import {completeWork} from './completeWork';
+import {HostRoot} from './workTag';
 
 let workInProgress: FiberNode | null = null;
 
-function renderRoot(unitOfWork: FiberNode) {
+export function scheduleUpdateOnFiber(fiber: FiberNode) {
+	// TODO: 调度功能
+	/** ………………………… */
+	const root = markUpdateFromFiberToRoot(fiber);
+	renderRoot(root);
+}
+
+/** 传入任意fiberNode,向上查找，返回FiberRootNode */
+export function markUpdateFromFiberToRoot(fiber: FiberNode) {
+	let node = fiber;
+	let parent = node.return;
+	while (parent !== null) {
+		node = parent;
+		parent = node.return;
+	}
+	if (node.tag === HostRoot) {
+		return node.stateNode;
+	}
+	return null;
+}
+
+function renderRoot(unitOfWork: FiberRootNode) {
 	prepareRefreshStack(unitOfWork); // 初始化方法
 	do {
 		try {
@@ -18,9 +40,10 @@ function renderRoot(unitOfWork: FiberNode) {
 }
 
 // 初始化把workInProgress指向要递归的fiberNode 根节点
-function prepareRefreshStack(root: FiberNode) {
-	// fiberNode root 赋值给workInProgress
-	workInProgress = root;
+function prepareRefreshStack(root: FiberRootNode) {
+	// 需要把FiberRootNode 转换成FiberNode类型 赋值给当前工作单元
+	// 通过current 找到HostRootFiber 进行转化处理
+	workInProgress = createWorkInProgress(root.current, {});
 }
 
 function workLoop() {
