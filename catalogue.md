@@ -1,11 +1,11 @@
+.
 ├── LICENSE
 ├── README.md
 ├── build
+├── catalogue
 ├── catalogue.md
-├── dist
 ├── flowChart
 ├── myreact-demo
-├── node_modules
 ├── package.json
 ├── packages
 ├── pnpm-lock.yaml
@@ -14,4 +14,4 @@
 ├── source-react-demo
 └── tsconfig.json
 
-8 directories, 7 files
+7 directories, 8 files
