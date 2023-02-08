@@ -23,3 +23,5 @@ current FiberNode <===> workInProgress
 
 更新可能发生在任意组件，而更新的流程是从根节点进行递归的
 需要一个根节点来保存通用的信息
+
+

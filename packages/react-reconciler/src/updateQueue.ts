@@ -27,12 +27,12 @@ export function createUpdate<State>(action: Action<State>): Update<State> {
  * @description 创建updateQuene实例
  * @returns
  */
-export function createUpdateQueue<Action>(): UpdateQueue<Action> {
+export function createUpdateQueue<State>(): UpdateQueue<State> {
 	return {
 		shared: {
 			pending: null
 		}
-	} as UpdateQueue<Action>;
+	} as UpdateQueue<State>;
 }
 
 /**
@@ -40,9 +40,9 @@ export function createUpdateQueue<Action>(): UpdateQueue<Action> {
  * @param updateQueue 更新队列
  * @param update 更新
  */
-export function enqueueUpdate<Action>(
-	updateQueue: UpdateQueue<Action>,
-	update: Update<Action>
+export function enqueueUpdate<State>(
+	updateQueue: UpdateQueue<State>,
+	update: Update<State>
 ) {
 	updateQueue.shared.pending = update;
 }
