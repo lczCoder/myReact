@@ -1,7 +1,8 @@
 import path from 'path';
 import fs from 'fs';
-import ts from 'rollup-plugin-typescript2';
-import cjs from '@rollup/plugin-commonjs';
+import ts from 'rollup-plugin-typescript2'; // ts转化
+import cjs from '@rollup/plugin-commonjs'; // commonjs 转化
+import replace from '@rollup/plugin-replace'; //
 
 const pkgPath = path.resolve(__dirname, '../../packages');
 const distPath = path.resolve(__dirname, '../../dist/node_modules');
@@ -26,6 +27,11 @@ export function getPackageContent(pkgName) {
 	return JSON.parse(ctx);
 }
 
-export function basePlugins({tsconfig = {}} = {}) {
-	return [cjs(), ts(tsconfig)];
+export function basePlugins({
+	alias = {
+		__DEV__: true
+	},
+	tsconfig = {}
+} = {}) {
+	return [replace(alias), cjs(), ts(tsconfig)];
 }

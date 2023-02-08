@@ -36,5 +36,8 @@
 		"commitizen": {
 			"path": "./node_modules/cz-customizable"
 		}
+	},
+	"dependencies": {
+		"@rollup/plugin-replace": "^5.0.2"
 	}
 }

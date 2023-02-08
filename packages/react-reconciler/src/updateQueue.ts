@@ -48,7 +48,7 @@ export function enqueueUpdate<State>(
 }
 
 /**
- * @desc 更新队列状态更新消费处理
+ * @desc 更新队列状态更新消费处理(计算状态最新值)
  * @param baseState 传入状态值
  * @param pendingUpdate 更新的数据源
  * @returns 返回处理后的更新数据源
@@ -66,7 +66,7 @@ export function processUpdateQueue<State>(
 		if (action instanceof Function) {
 			result.memoizedState = action(baseState); // 取函数的返回值
 		} else {
-			result.memoizedState = action; // 直接赋值更新
+			result.memoizedState = action; // 直接返回源update
 		}
 	}
 
